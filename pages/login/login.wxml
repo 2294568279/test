@@ -1,0 +1,23 @@
+<view class="login-container">
+  <navigation-bar title="登录" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+  
+  <view class="logo">
+    <image src="/images/3D.png" mode="widthFix"></image>
+    <text class="title">实验室设备预约管理系统</text>
+  </view>
+  
+  <view class="login-form">
+    <button 
+      class="login-btn" 
+      open-type="getUserProfile" 
+      bindgetuserinfo="onGetUserInfo"
+    >
+      <image class="wx-icon" src="/images/wechat.png"></image>
+      微信快捷登录
+    </button>
+    
+    <view class="agreement">
+      登录即表示同意《用户服务协议》和《隐私政策》
+    </view>
+  </view>
+</view>
