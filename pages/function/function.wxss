@@ -1,93 +1,111 @@
 page {
-  background-color: #f9f9f9;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-}
+    background-color: #f9f9f9;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
 
-.container {
-  padding: 0;
-}
+  /* 用户信息头部 */
+  .user-header {
+    width: 92%;
+    margin: 20rpx auto;
+    background-color: #ffffff;
+    padding: 30rpx;
+    border-radius: 20rpx;
+    box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+  }
 
-/* 通用区块：横向撑满，左右留 4% 边距 */
-.section {
-  width: 92%;
-  margin: 20rpx auto;
-  background-color: #ffffff;
-  padding: 30rpx;
-  border-radius: 20rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
-}
+  .avatar {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+  }
 
-.label {
-  font-size: 30rpx;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 20rpx;
-}
+  .user-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 
-.picker,
-input,
-.checkbox-item {
-  font-size: 28rpx;
-  padding: 20rpx;
-  background-color: #f5f5f5;
-  border-radius: 12rpx;
-  margin-bottom: 12rpx;
-  color: #333;
-  width: 100%;
-  box-sizing: border-box;
-}
+  .nickname {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5rpx;
+  }
 
-.checkbox-item checkbox {
-  transform: scale(0.8);
-  margin-right: 10rpx;
-}
+  .role {
+    font-size: 24rpx;
+    color: #999;
+  }
 
-.submit-button {
-  margin: 40rpx auto;
-  width: 92%;
-}
-
-button[type="primary"] {
-  background-color: #007aff;
-  color: white;
-  padding: 20rpx;
-  font-size: 32rpx;
-  border-radius: 12rpx;
-  box-shadow: 0 6rpx 12rpx rgba(0, 122, 255, 0.3);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.page {
-  height: 100vh;
-  /* 整页视口 */
-  display: flex;
-  flex-direction: column;
-}
-
-.scrollarea {
-  flex: 1;
-  /* 占满剩余高度 */
-  overflow-y: scroll;
-}
-
-.device-status {
-  margin-top: 15rpx;
-  padding: 15rpx;
-  background-color: #f0f7ff;
-  border-radius: 10rpx;
-}
-
-.status-item {
-  font-size: 26rpx;
-  color: #333;
-  margin-bottom: 8rpx;
-}
-
-.status-idle {
-  color: #00aa00;
-}
-
-.status-busy {
-  color: #ff3333;
-}
+  .arrow {
+    font-size: 32rpx;
+    color: #ccc;
+  }
+  
+  .container {
+    padding: 0;
+  }
+  
+  /* 通用区块：横向撑满，左右留 4% 边距 */
+  .section {
+    width: 92%;
+    margin: 20rpx auto;
+    background-color: #ffffff;
+    padding: 30rpx;
+    border-radius: 20rpx;
+    box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  }
+  
+  .label {
+    font-size: 30rpx;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20rpx;
+  }
+  
+  .picker,
+  input,
+  .checkbox-item {
+    font-size: 28rpx;
+    padding: 20rpx;
+    background-color: #f5f5f5;
+    border-radius: 12rpx;
+    margin-bottom: 12rpx;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .checkbox-item checkbox {
+    transform: scale(0.8);
+    margin-right: 10rpx;
+  }
+  
+  .submit-button {
+    margin: 40rpx auto;
+    width: 92%;
+  }
+  
+  button[type="primary"] {
+    background-color: #007aff;
+    color: white;
+    padding: 20rpx;
+    font-size: 32rpx;
+    border-radius: 12rpx;
+    box-shadow: 0 6rpx 12rpx rgba(0, 122, 255, 0.3);
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .page {
+    height: 100vh; /* 整页视口 */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .scrollarea {
+    flex: 1; /* 占满剩余高度 */
+    overflow-y: scroll;
+  }
