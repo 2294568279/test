@@ -9,15 +9,21 @@
   <view class="login-form">
     <button 
       class="login-btn" 
-      open-type="getUserProfile" 
-      bindgetuserinfo="onGetUserInfo"
+      bindtap="getUserProfile"
     >
       <image class="wx-icon" src="/images/wechat.png"></image>
       微信快捷登录
     </button>
     
     <view class="agreement">
-      登录即表示同意《用户服务协议》和《隐私政策》
+      <checkbox-group>
+        <label>
+          <checkbox value="agree" /> 我已阅读并同意
+        </label>
+        <text class="link" bindtap="openUserAgreement">《用户服务协议》</text>
+        和
+        <text class="link" bindtap="openPrivacyPolicy">《隐私政策》</text>
+      </checkbox-group>
     </view>
   </view>
 </view>
