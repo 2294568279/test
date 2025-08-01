@@ -6,13 +6,20 @@ Page({
       suggestions: [],
       selectedDate: '',
       timeSlots: ['08:00-10:00', '10:00-12:00', '14:00-16:00', '16:00-18:00'],
-      selectedTime: null
+      selectedTime: null,
+      userInfo: {}
     },
   
     onLoad() {
+      // 获取用户信息
+      const userInfo = wx.getStorageSync('userInfo');
+      if (userInfo) {
+        this.setData({ userInfo });
+      }
+
       // 获取设备列表
       wx.request({
-        url: 'http://localhost:3000/api/devices', // 假设有设备列表接口
+        url: 'http://localhost:3000/api/devices',
         method: 'GET',
         success: (res) => {
           if (res.data.code === 200) {
@@ -20,6 +27,19 @@ Page({
             const deviceNames = res.data.data.map(device => device.name);
             this.setData({ devices: deviceNames });
           }
+        }
+      });
+    },
+
+    goToProfile() {
+      console.log('尝试跳转到profile页面');
+      wx.navigateTo({
+        url: '/pages/profile/profile',
+        success: () => {
+          console.log('从function页面跳转到profile页面成功');
+        },
+        fail: (err) => {
+          console.log('从function页面跳转到profile页面失败:', err);
         }
       });
     },

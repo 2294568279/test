@@ -2,6 +2,48 @@ page {
     background-color: #f9f9f9;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   }
+
+  /* 用户信息头部 */
+  .user-header {
+    width: 92%;
+    margin: 20rpx auto;
+    background-color: #ffffff;
+    padding: 30rpx;
+    border-radius: 20rpx;
+    box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+  }
+
+  .avatar {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+  }
+
+  .user-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nickname {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5rpx;
+  }
+
+  .role {
+    font-size: 24rpx;
+    color: #999;
+  }
+
+  .arrow {
+    font-size: 32rpx;
+    color: #ccc;
+  }
   
   .container {
     padding: 0;

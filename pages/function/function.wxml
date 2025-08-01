@@ -1,7 +1,17 @@
 <view class="page">
-  <navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF" />
+  <navigation-bar title="实验室设备预约" back="{{false}}" color="black" background="#FFF" />
 
   <scroll-view class="scrollarea" scroll-y="true">
+    <!-- 用户信息区 -->
+    <view class="user-header" bindtap="goToProfile">
+      <image class="avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" />
+      <view class="user-info">
+        <text class="nickname">{{userInfo.name || '未设置昵称'}}</text>
+        <text class="role">{{userInfo.role || 'user'}}</text>
+      </view>
+      <text class="arrow">></text>
+    </view>
+
     <!-- 内容区 -->
     <view class="container">
         
