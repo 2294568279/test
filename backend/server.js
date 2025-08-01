@@ -210,15 +210,28 @@ app.post('/api/reservations', (req, res) => {
     return res.status(400).json({ code: 400, msg: 'Invalid request' });
   }
 
-  db.run(`INSERT INTO reservations (device, name, date, time) VALUES (?, ?, ?, ?)`,
-    [device, name, date, time],
-    function(err) {
-      if (err) {
-        return res.status(500).json({ code: 500, msg: 'Database error' });
-      }
-      res.json({ code: 200, msg: 'Reservation successful', reservationId: this.lastID });
+  // 检查是否存在冲突的预约
+  db.get('SELECT * FROM reservations WHERE device = ? AND date = ? AND time = ?', [device, date, time], (err, row) => {
+    if (err) {
+      return res.status(500).json({ code: 500, msg: 'Database error' });
     }
-  );
+
+    if (row) {
+      // 存在冲突的预约
+      return res.status(409).json({ code: 409, msg: 'This time slot is already reserved' });
+    }
+
+    // 插入新的预约记录
+    db.run(`INSERT INTO reservations (device, name, date, time) VALUES (?, ?, ?, ?)`,
+      [device, name, date, time],
+      function(err) {
+        if (err) {
+          return res.status(500).json({ code: 500, msg: 'Database error' });
+        }
+        res.json({ code: 200, msg: 'Reservation successful', reservationId: this.lastID });
+      }
+    );
+  });
 });
 
 // Start server

@@ -90,6 +90,11 @@ Page({
               selectedDate: '',
               selectedTime: null
             });
+          } else if (res.data.code === 409) {
+            wx.showToast({
+              title: '该时间段已被预约',
+              icon: 'none'
+            });
           } else {
             wx.showToast({
               title: res.data.msg || '预约失败',
