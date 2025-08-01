@@ -1,86 +1,61 @@
 <view class="page">
-  <navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF" />
+  <navigation-bar title="实验室设备预约" back="{{false}}" color="black" background="#FFF" />
 
   <scroll-view class="scrollarea" scroll-y="true">
+    <!-- 用户信息区 -->
+    <view class="user-header" bindtap="goToProfile">
+      <image class="avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" />
+      <view class="user-info">
+        <text class="nickname">{{userInfo.name || '未设置昵称'}}</text>
+        <text class="role">{{userInfo.role || 'user'}}</text>
+      </view>
+      <text class="arrow">></text>
+    </view>
+
     <!-- 内容区 -->
     <view class="container">
-
-      <!-- 实验室设备选择 -->
-      <view class="section">
+        
+    <!-- 实验室设备选择 -->
+        <view class="section">
         <view class="label">实验室设备</view>
         <picker mode="selector" range="{{devices}}" bindchange="onDeviceChange">
-          <view class="picker">{{devices[selectedDevice] || "请选择设备"}}</view>
+            <view class="picker">{{devices[selectedDevice] || "请选择设备"}}</view>
         </picker>
-      </view>
-
-      <!-- 在实验室设备选择后添加 -->
-      <view wx:if="{{selectedDevice !== null}}" class="device-status">
-        <view class="status-item">设备类型: {{deviceProperties[devices[selectedDevice]].type}}</view>
-        <view class="status-item">支持材料: {{deviceProperties[devices[selectedDevice]].material}}</view>
-        <view class="status-item">最大尺寸: {{deviceProperties[devices[selectedDevice]].maxSize}}</view>
-        <view class="status-item status-{{deviceProperties[devices[selectedDevice]].status === '空闲' ? 'idle' : 'busy'}}">
-          当前状态: {{deviceProperties[devices[selectedDevice]].status}}
         </view>
-      </view>
 
-      <!-- 人员名称输入 + 下拉建议 -->
-      <view class="section">
+        <!-- 人员名称输入 + 下拉建议 -->
+        <view class="section">
         <view class="label">人员名称</view>
         <input type="text" placeholder="请输入姓名" bindinput="onPeopleInput" value="{{inputPeople}}" />
         <view wx:if="{{suggestions.length > 0}}">
-          <view class="picker" wx:for="{{suggestions}}" wx:key="index" bindtap="onSuggestionTap" data-name="{{item}}">
+            <view class="picker" wx:for="{{suggestions}}" wx:key="index" bindtap="onSuggestionTap" data-name="{{item}}">
             {{item}}
-          </view>
+            </view>
         </view>
-      </view>
+        </view>
 
-      <!-- 日期选择 -->
-      <view class="section">
+        <!-- 日期选择 -->
+        <view class="section">
         <view class="label">日期选择</view>
         <picker mode="date" value="{{selectedDate}}" bindchange="onDateChange">
-          <view class="picker">{{selectedDate || "请选择日期"}}</view>
+            <view class="picker">{{selectedDate || "请选择日期"}}</view>
         </picker>
-      </view>
+        </view>
 
-      <!-- 时间段选择 -->
-      <view class="section">
+        <!-- 时间段选择 -->
+        <view class="section">
         <view class="label">使用时间段</view>
         <picker mode="selector" range="{{timeSlots}}" bindchange="onTimeChange">
-          <view class="picker">{{timeSlots[selectedTime] || "请选择时间段"}}</view>
+            <view class="picker">{{timeSlots[selectedTime] || "请选择时间段"}}</view>
         </picker>
-      </view>
+        </view>
 
-      <!-- 在时间段选择后添加 -->
-      <!-- 打印材料选择 -->
-      <view class="section">
-        <view class="label">打印材料</view>
-        <picker mode="selector" range="{{materials}}" bindchange="onMaterialChange">
-          <view class="picker">{{materials[selectedMaterial] || "请选择材料"}}</view>
-        </picker>
-      </view>
-
-      <!-- 模型文件上传 -->
-      <view class="section">
-        <view class="label">模型文件</view>
-        <button bindtap="chooseModelFile" type="default">选择STL/OBJ文件</button>
-        <view wx:if="{{modelFile.name}}">已选择: {{modelFile.name}}</view>
-      </view>
-
-      <!-- 打印质量选择 -->
-      <view class="section">
-        <view class="label">打印质量</view>
-        <picker mode="selector" range="{{qualityLevels}}" bindchange="onQualityChange">
-          <view class="picker">{{qualityLevels[selectedQuality] || "请选择质量"}}</view>
-        </picker>
-      </view>
-
-      <!-- 提交按钮 -->
-      <view class="submit-button">
+        <!-- 提交按钮 -->
+        <view class="submit-button">
         <button type="primary" bindtap="onSubmit">提交</button>
-      </view>
+        </view>
 
-
-
+        
     </view>
   </scroll-view>
 </view>

@@ -1,11 +1,12 @@
 {
-    "pages": [
-      "pages/login/login",
-      "pages/index/index",
-      "pages/function/function",
-      "pages/logs/logs"
-    ],
-    
+  "pages": [
+    "pages/login/login",
+    "pages/profile/profile",
+    "pages/admin/admin",
+    "pages/function/function",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
@@ -24,5 +25,10 @@
   },
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "permission": {
+    "scope.userInfo": {
+      "desc": "用于完善用户资料"
+    }
+  }
 }
