@@ -15,9 +15,17 @@ import java.net.InetSocketAddress;
 
 public class Server {
 
-    private static final String DB_URL = "jdbc:sqlite:users.db";
+    private static final String DB_URL = "jdbc:sqlite:./users.db";
 
     public static void main(String[] args) throws IOException {
+        try {
+            Class.forName("org.sqlite.JDBC");
+        } catch (ClassNotFoundException e) {
+            System.out.println("SQLite JDBC driver not found.");
+            e.printStackTrace();
+            return;
+        }
+
         // Initialize SQLite database
         try (Connection conn = DriverManager.getConnection(DB_URL)) {
             if (conn != null) {
