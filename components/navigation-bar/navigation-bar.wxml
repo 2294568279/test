@@ -1,10 +1,11 @@
 <view class="weui-navigation-bar {{extClass}}">
-  <view class="weui-navigation-bar__inner {{ios ? 'ios' : 'android'}}" style="color: {{color}}; background: {{background}}; {{displayStyle}}; {{innerPaddingRight}}; {{safeAreaTop}};">
+  <view class="weui-navigation-bar__inner {{ios ? 'ios' : 'android'}}" 
+        style="color: {{color}}; background: {{background}}; {{displayStyle}}; {{innerPaddingRight}}; {{safeAreaTop}};">
 
     <!-- 左侧按钮 -->
     <view class='weui-navigation-bar__left' style="{{leftWidth}};">
       <block wx:if="{{back || homeButton}}">
-        <!-- 返回上一页 -->
+        <!-- 先显示返回按钮，再显示首页按钮（如果都需要显示） -->
         <block wx:if="{{back}}">
           <view class="weui-navigation-bar__buttons weui-navigation-bar__buttons_goback">
             <view
@@ -19,13 +20,14 @@
             </view>
           </view>
         </block>
-        <!-- 返回首页 -->
+        <!-- 首页按钮 - 修复与返回按钮的布局冲突 -->
         <block wx:if="{{homeButton}}">
           <view class="weui-navigation-bar__buttons weui-navigation-bar__buttons_home">
             <view
               bindtap="home"
               class="weui-navigation-bar__btn_home_wrapper"
               hover-class="weui-active"
+              hover-stay-time="100"
               aria-role="button"
               aria-label="首页"
             >
@@ -39,7 +41,7 @@
       </block>
     </view>
 
-    <!-- 标题 -->
+    <!-- 标题 - 修复过长文字显示问题 -->
     <view class='weui-navigation-bar__center'>
       <view wx:if="{{loading}}" class="weui-navigation-bar__loading" aria-role="alert">
         <view
@@ -49,14 +51,14 @@
         ></view>
       </view>
       <block wx:if="{{title}}">
-        <text>{{title}}</text>
+        <text class="weui-navigation-bar__title-text">{{title}}</text>
       </block>
       <block wx:else>
         <slot name="center"></slot>
       </block>
     </view>
     
-    <!-- 右侧留空 -->
+    <!-- 右侧区域 -->
     <view class='weui-navigation-bar__right'>
       <slot name="right"></slot>
     </view>

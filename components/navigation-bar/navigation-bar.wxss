@@ -37,6 +37,24 @@
   box-sizing: border-box;
 }
 
+/* 在现有样式中添加 */
+.weui-navigation-bar__title-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 80%; /* 限制最大宽度，避免溢出 */
+}
+
+/* 修复左侧按钮同时显示时的布局问题 */
+.weui-navigation-bar__left {
+  gap: 8px; /* 按钮之间的间距 */
+}
+
+.weui-navigation-bar__buttons {
+  display: flex;
+  align-items: center;
+}
+
 .weui-navigation-bar__btn_goback_wrapper {
   padding: 11px 18px 11px 16px;
   margin: -11px -18px -11px -16px;
