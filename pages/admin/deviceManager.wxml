@@ -1,0 +1,29 @@
+<view class="admin-container">
+  <navigation-bar title="设备管理" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+
+  <view class="content">
+    <!-- 新增设备表单 -->
+    <view class="section">
+      <text class="section-title">新增设备</text>
+      <input 
+        class="input" 
+        placeholder="设备名称" 
+        value="{{newDeviceName}}"
+        bindinput="onDeviceNameInput"
+      />
+      <button class="add-btn" bindtap="addDevice">添加设备</button>
+    </view>
+
+    <!-- 设备列表 -->
+    <view class="section">
+      <text class="section-title">设备列表</text>
+      <view class="device-item" wx:for="{{devices}}" wx:key="id">
+        <text class="device-name">{{item.name}}</text>
+        <view class="device-actions">
+          <button class="edit-btn" bindtap="editDevice" data-id="{{item.id}}" data-name="{{item.name}}">编辑</button>
+          <button class="delete-btn" bindtap="deleteDevice" data-id="{{item.id}}">删除</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

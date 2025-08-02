@@ -7,10 +7,26 @@ Page({
   },
 
   onLoad() {
+    // 新增：权限验证逻辑
+    const userInfo = wx.getStorageSync('userInfo');
+    
+    if (!userInfo || !userInfo.isAdmin) {
+      wx.showToast({
+        title: '无管理员权限',
+        icon: 'none'
+      });
+      setTimeout(() => {
+        wx.navigateBack({ delta: 1 });
+      }, 1000);
+      return;
+    }
+
+    // 原有加载逻辑
     this.loadDevices();
     this.loadUsers();
   },
 
+  // 以下为原有方法，保持不变
   loadDevices() {
     wx.request({
       url: 'http://localhost:3000/api/devices',
@@ -91,5 +107,18 @@ Page({
         }
       }
     });
+  },
+
+  navigateToUserManager() {
+    wx.navigateTo({ url: '/pages/admin/admin' });
+  },
+
+  navigateToDeviceManager() {
+    wx.navigateTo({ url: '/pages/admin/deviceManager' });
+  },
+
+  navigateToReservationManager() {
+    wx.navigateTo({ url: '/pages/admin/reservationManager' });
   }
 });
+    

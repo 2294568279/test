@@ -24,5 +24,7 @@
     <view class="usermotto">
       <text class="user-motto">{{motto}}</text>
     </view>
+    <!-- 管理员入口按钮（新增部分） -->
+    <button bindtap="goToAdmin" class="admin-btn">管理员入口</button>
   </view>
 </scroll-view>

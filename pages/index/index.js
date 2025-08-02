@@ -20,5 +20,11 @@ Page({
         });
       }
     });
+  },
+  goToAdmin() {
+    // 简单权限判断（实际项目需完善）
+    wx.navigateTo({
+      url: '/pages/admin/admin'
+    });
   }
 });

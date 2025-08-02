@@ -1,0 +1,27 @@
+<view class="admin-container">
+  <navigation-bar title="预约管理" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+
+  <view class="content">
+    <view class="filter-section">
+      <picker mode="date" bindchange="onDateChange" value="{{selectedDate}}">
+        <view class="picker">选择日期: {{selectedDate || '全部日期'}}</view>
+      </picker>
+      <picker mode="selector" range="{{devices}}" bindchange="onDeviceChange">
+        <view class="picker">选择设备: {{devices[selectedDeviceIndex] || '全部设备'}}</view>
+      </picker>
+    </view>
+
+    <view class="section">
+      <text class="section-title">预约列表</text>
+      <view class="reservation-item" wx:for="{{reservations}}" wx:key="id">
+        <view class="reservation-info">
+          <text class="device">{{item.device}}</text>
+          <text class="user">预约人: {{item.name}}</text>
+          <text class="time">{{item.date}} {{item.time}}</text>
+        </view>
+        <button class="delete-btn" bindtap="cancelReservation" data-id="{{item.id}}">取消预约</button>
+      </view>
+      <view wx:if="{{reservations.length === 0}}" class="empty-tip">暂无预约记录</view>
+    </view>
+  </view>
+</view>

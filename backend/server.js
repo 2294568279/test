@@ -358,3 +358,71 @@ app.post('/api/admin/user-devices', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+// 设备管理接口
+// 新增设备
+app.post('/api/admin/devices', (req, res) => {
+  const { name } = req.body;
+  if (!name) return res.status(400).json({ code: 400, msg: '设备名称不能为空' });
+
+  db.run('INSERT INTO devices (name) VALUES (?)', [name], function(err) {
+    if (err) return res.status(500).json({ code: 500, msg: 'Database error' });
+    res.json({ code: 200, msg: '设备添加成功', id: this.lastID });
+  });
+});
+
+// 修改设备
+app.put('/api/admin/devices/:id', (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  if (!name) return res.status(400).json({ code: 400, msg: '设备名称不能为空' });
+
+  db.run('UPDATE devices SET name = ? WHERE id = ?', [name, id], function(err) {
+    if (err) return res.status(500).json({ code: 500, msg: 'Database error' });
+    res.json({ code: 200, msg: '设备修改成功' });
+  });
+});
+
+// 删除设备
+app.delete('/api/admin/devices/:id', (req, res) => {
+  const { id } = req.params;
+  db.run('DELETE FROM devices WHERE id = ?', [id], function(err) {
+    if (err) return res.status(500).json({ code: 500, msg: 'Database error' });
+    res.json({ code: 200, msg: '设备删除成功' });
+  });
+});
+
+// 预约管理接口
+// 获取所有预约
+app.get('/api/admin/reservations', (req, res) => {
+  const { date, device } = req.query;
+  let query = 'SELECT * FROM reservations';
+  const params = [];
+  
+  if (date || device) {
+    query += ' WHERE';
+    if (date) {
+      query += ' date = ?';
+      params.push(date);
+    }
+    if (device) {
+      if (params.length > 0) query += ' AND';
+      query += ' device = ?';
+      params.push(device);
+    }
+  }
+  
+  db.all(query, params, (err, rows) => {
+    if (err) return res.status(500).json({ code: 500, msg: 'Database error' });
+    res.json({ code: 200, data: rows });
+  });
+});
+
+// 取消预约
+app.delete('/api/admin/reservations/:id', (req, res) => {
+  const { id } = req.params;
+  db.run('DELETE FROM reservations WHERE id = ?', [id], function(err) {
+    if (err) return res.status(500).json({ code: 500, msg: 'Database error' });
+    res.json({ code: 200, msg: '预约已取消' });
+  });
+});

@@ -1,6 +1,21 @@
 <view class="admin-container">
   <navigation-bar title="管理员面板" back="{{true}}" color="black" background="#FFF"></navigation-bar>
 
+  <view class="menu-grid">
+    <view class="menu-item" bindtap="navigateToUserManager">
+      <text class="menu-icon">👥</text>
+      <text class="menu-text">用户管理</text>
+    </view>
+    <view class="menu-item" bindtap="navigateToDeviceManager">
+      <text class="menu-icon">🔧</text>
+      <text class="menu-text">设备管理</text>
+    </view>
+    <view class="menu-item" bindtap="navigateToReservationManager">
+      <text class="menu-icon">📅</text>
+      <text class="menu-text">预约管理</text>
+    </view>
+  </view>
+
   <view class="content">
     <view class="section">
       <text class="section-title">选择用户</text>
@@ -16,11 +31,7 @@
       <view class="device-list">
         <view class="device-item" wx:for="{{devices}}" wx:key="id">
           <text class="device-name">{{item.name}}</text>
-          <switch 
-            checked="{{userDevices.includes(item.id)}}" 
-            data-device-id="{{item.id}}"
-            bindchange="onDeviceToggle"
-          />
+          <switch checked="{{userDevices.includes(item.id)}}" data-device-id="{{item.id}}" bindchange="onDeviceToggle" />
         </view>
       </view>
     </view>
